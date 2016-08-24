@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   SaihuBot.prototype.catchAll = { action: function(robot, msg) {
     var randomMsg = [
       '我只好回你一個404了',
-      '梅林的鬍子阿, 你用對命令沒? 用個?試試?',
       '我就當真你在跟我聊天了(灑花)',
       '你收到幾個錯誤訊息了？再試一個',
       '你怎麼不問問神奇的五樓呢？',
@@ -18,12 +17,48 @@ document.addEventListener('DOMContentLoaded', function() {
   }};
 
   SaihuBot.prototype.responses.push(
-    { name: 'resume', rule: /(gasolin*|履歷*|經歷*|網站*|resume*)/i, action: function(robot, msg) {
+    { name: 'home', rule: /首頁*|home*/i, action: function(robot, msg) {
       let url = 'http://www.gasolin.idv.tw';
       let link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
-      let linkText = document.createTextNode('我主人gasolin的履歷在這，人才阿！');
+      let linkText = document.createTextNode('歡迎前往 gasolin 的首頁');
+      link.appendChild(linkText);
+      robot.sendHTML(link);
+      window.open(url, '_blank');
+    }});
+
+  SaihuBot.prototype.responses.push(
+    { name: 'resume', rule: /gasolin*|履歷*|經歷*|網站*|學歷*|resume*/i, action: function(robot, msg) {
+      let url = 'http://www.gasolin.idv.tw/personal/resume';
+      let link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      let linkText = document.createTextNode('我主人 gasolin 的履歷在這，人才阿！');
+      link.appendChild(linkText);
+      robot.sendHTML(link);
+      window.open(url, '_blank');
+    }});
+
+  SaihuBot.prototype.responses.push(
+    { name: 'resume', rule: /專案*|project*/i, action: function(robot, msg) {
+      let url = 'http://www.gasolin.idv.tw/personal/portfolio';
+      let link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      let linkText = document.createTextNode('gasolin 貢獻過的專案大都在這了');
+      link.appendChild(linkText);
+      robot.sendHTML(link);
+      window.open(url, '_blank');
+    }});
+
+  SaihuBot.prototype.responses.push(
+    { name: 'resume', rule: /演講*|present*/i, action: function(robot, msg) {
+      let url = 'http://www.gasolin.idv.tw/personal/present';
+      let link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      let linkText = document.createTextNode('gasolin 過去的演講列表');
       link.appendChild(linkText);
       robot.sendHTML(link);
       window.open(url, '_blank');
