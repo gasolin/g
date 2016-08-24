@@ -17,4 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
     robot.send(randomMsg[Math.floor(Math.random() * msgLen)]);
   }};
 
+  SaihuBot.prototype.responses.push(
+    { name: 'resume', rule: /(gasolin*|履歷*|經歷*|網站*|resume*)/i, action: function(robot, msg) {
+      let url = 'http://www.gasolin.idv.tw';
+      let link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      let linkText = document.createTextNode('我主人gasolin的履歷在這，人才阿！');
+      link.appendChild(linkText);
+      robot.sendHTML(link);
+      window.open(url, '_blank');
+    }});
 });
