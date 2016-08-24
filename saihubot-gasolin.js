@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }});
 
   SaihuBot.prototype.responses.push(
-    { name: 'resume', rule: /專案*|project*/i, action: function(robot, msg) {
+    { name: 'project', rule: /專案*|project*/i, action: function(robot, msg) {
       let url = 'http://www.gasolin.idv.tw/personal/portfolio';
       let link = document.createElement('a');
       link.href = url;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }});
 
   SaihuBot.prototype.responses.push(
-    { name: 'resume', rule: /演講*|present*/i, action: function(robot, msg) {
+    { name: 'present', rule: /演講*|present*/i, action: function(robot, msg) {
       let url = 'http://www.gasolin.idv.tw/personal/present';
       let link = document.createElement('a');
       link.href = url;
@@ -62,5 +62,22 @@ document.addEventListener('DOMContentLoaded', function() {
       link.appendChild(linkText);
       robot.sendHTML(link);
       window.open(url, '_blank');
+    }});
+
+  SaihuBot.prototype.responses.push(
+    { name: 'travel', rule: /去過*|travel*/i, action: function(robot, msg) {
+      let url = 'http://www.mytravelmap.tk/compare/gg112695256249584453237/1470712913452?locale=en';
+      let div = document.createElement('div');
+      let img = document.createElement('img');
+      img.src = 'http://www.mytravelmap.tk/worldMap/images/408/264/gg112695256249584453237/1470712913452.png';
+      let link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      let linkText = document.createTextNode('這些是 gasolin 去過的國家');
+      link.appendChild(linkText);
+      div.appendChild(img);
+      div.appendChild(document.createElement('br'));
+      div.appendChild(link);
+      robot.sendHTML(div);
     }});
 });
