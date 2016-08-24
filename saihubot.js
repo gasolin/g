@@ -1,12 +1,12 @@
 'use strict';
 function SaihuBot() {
   this.myAlias = 'me';
-  this.botAlias = 'bot';
+  this.botAlias = '小g';
   this.messageHistoryElement = 'history';
   this.inputElement = 'message';
   this.sendButtonElement = 'send';
   this.defaultMessage = document.createElement('p');
-  this.defaultMessage.textContent = this.botAlias + ': type something to chat with me';
+  this.defaultMessage.textContent = this.botAlias + ': 有什麼需要服務的地方嗎？';
 
   this.init();
 }
