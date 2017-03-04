@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   SaihuBot.prototype.responses.push(
     { name: 'resume', rule: /gasolin*|履歷*|經歷*|網站*|學歷*|resume*/i, action: function(robot, msg) {
-      let url = 'http://www.gasolin.idv.tw/personal/resume';
+      let url = 'http://www.gasolin.idv.tw/resume';
       let link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   SaihuBot.prototype.responses.push(
     { name: 'project', rule: /專案*|project*/i, action: function(robot, msg) {
-      let url = 'http://www.gasolin.idv.tw/personal/portfolio';
+      let url = 'http://www.gasolin.idv.tw/portfolio';
       let link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   SaihuBot.prototype.responses.push(
     { name: 'present', rule: /演講*|present*/i, action: function(robot, msg) {
-      let url = 'http://www.gasolin.idv.tw/personal/present';
+      let url = 'http://www.gasolin.idv.tw/present';
       let link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
