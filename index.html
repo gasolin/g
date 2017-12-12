@@ -4,11 +4,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="client side chatbot that can be embedded in any web site.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <title>gasolin is my master</title>
+  <title>little g, web bot</title>
+  <link rel="stylesheet" href="samples/chat.css">
+  <script src="saihubot.js"></script>
+  <script src="adapters/saihubot-adapter-basic.js"></script>
+  <script src="plugins/saihubot-diagnostics.js"></script>
+  <script src="plugins/saihubot-search.js"></script>
+  <script src="plugins/saihubot-gasolin.js"></script>
 </head>
 <body>
-  <div id="history"></div>
-  <input id="message"><button id="send">Send</button>
+  <div class="chat-frame">
+    <div class="chat-content">
+      <div id="history"></div>
+    </div>
+    <div class="chat-footer">
+      <input id="message" autocomplete="off"><button id="send">Send</button>
+    </div>
+  </div>
 
   <p>
     >> type `ping`, `time`, or `echo [message]` to see what's happened<br>
@@ -16,9 +28,34 @@
     >> <a href="https://github.com/gasolin/saihubot/">Download Saihubot</a>
   </p>
 
-  <script defer src="saihubot.js"></script>
-  <script defer src="saihubot-diagnostics.js"></script>
-  <script defer src="saihubot-search.js"></script>
-  <script defer src="saihubot-gasolin.js"></script>
+  <script>
+  var message = document.createElement('span');
+  var line1 = document.createTextNode('小g: 有什麼需要服務的地方嗎？');
+  message.appendChild(line1);
+  new SaihuBot({
+    adapter: basicAdapter,
+    // brain: localforageBrain,
+    welcomeMessage: message,
+    notFoundMessages: [
+      'type `ping`, `time`, or `echo [message]` to see what\'s happened',
+      'type `google [keyword]`, `wiki [keyword]` to search',
+      'type `help` for full sample commands list',
+      'Want more samples? type `samples`',
+      'Try refresh the page, messages are cached locally',
+      'type `github saihubot` to visit me and give a star!',
+      'you can ask anything ex: `siri who is current Us president?`',
+      '我只好回你一個404了',
+      '我就當真你在跟我聊天了(灑花)',
+      '你收到幾個錯誤訊息了？再試一個',
+      '你怎麼不問問神奇的五樓呢？',
+      '人生哪~要浪費在美好的事物上，我就當你在跟我聊天了（幸福）',
+      '我想你應該不是在跟我講話，我都不知道要怎麼回你',
+      '你想知道什麼？',
+      '至少你是認真在跟我聊天, 不是在玩皮卡丘'
+    ],
+    bot: "小g",
+    user: "我",
+  });
+</script>
 </body>
 </html>

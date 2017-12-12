@@ -1,0 +1,49 @@
+.chat-frame {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  height: 320px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b3b3b3;
+  padding: 0 3px 4px 4px;
+}
+
+.chat-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.chat-footer {
+  display: flex;
+  flex-direction: row;
+}
+
+#message {
+  flex-grow: 1;
+}
+
+#send {
+  flex-grow: 0;
+}
+
+#history > p {
+  padding: 0 2px;
+}
+
+#history button {
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 561px) {
+  .chat-frame {
+    font-size: larger;
+    height: 98%;
+  }
+
+  .chat-footer {
+    height: 2rem;
+  }
+}
