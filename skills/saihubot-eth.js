@@ -4,37 +4,61 @@
 const GASSTATION_API = 'https://ethgasstation.info/api/ethgasAPI.json';
 const GASNOW_API = 'https://www.gasnow.org/api/v3/gas/price?utm_source=:gaso';
 
+function int(num) {
+  return parseInt(num, 10);
+}
+
+function fetchGasStation(robot) {
+  fetch(GASSTATION_API)
+  .then(response => response.json())
+  .then(json => {
+    const result = `這是Gas Station的價格...\n H: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
+    robot.send(result);
+    robot.render();
+  })
+}
+
+function fetchGasNow(robot) {
+  fetch(GASNOW_API)
+  .then(response => response.json())
+  .then(json => {
+    const result = `這是Gas Now的價格...\n 高: ${int(json.data.fast / 1000000000)} 中: ${int(json.data.standard / 1000000000)} 低: ${int(json.data.slow / 1000000000)}`
+    robot.send(result);
+    robot.render();
+  })
+}
+
+// skills that use
+// confirm dialog addon
 SaihuBot.prototype.responses.push({
   name: 'gasnow',
   rule: /gas*/igs,
   action: function(robot, msg) {
-    // const div = document.createElement('div');
-    // const node = document.createTextNode();
-    // div.appendChild(node);
-    robot.send('等等我找看看啊...');
-    // Promise.all([
-    //   fetch(GASSTATION_API).then(response => response.json()),
-    //   fetch(GASNOW_API).then(response => response.json()),
-    // ]).then(([station, gasnow]) => {
-    //   const gas = gasnow.data
-    //   const div = document.createElement('pre');
-    //   const result = `GasStation: H: ${station.fast / 10} M: ${station.average / 10} L: ${station.safeLow / 10}\n` +
-    //   `GasNow: H: ${gas.fast / 1000000000} M: ${gas.standard / 1000000000} L: ${gas.slow / 1000000000}`
-    //   const node = document.createTextNode(result);
-    //   div.appendChild(node);
-    //   robot.sendHTML(div);
-    // })
-    fetch(GASSTATION_API)
-      .then(response => response.json())
-      .then(json => {
-        const result = `GasStation: H: ${json.fast / 10} M: ${json.average / 10} L: ${json.safeLow / 10}`
-        robot.send(result);
-      })
-    fetch(GASNOW_API)
-      .then(response => response.json())
-      .then(json => {
-        const result = `GasNow: H: ${json.data.fast / 1000000000} M: ${json.data.standard / 1000000000} L: ${json.data.slow / 1000000000}`
-        robot.send(result);
-      })
+    robot.confirm('想看哪個來源?',
+      ['Gas Station', {
+        name: 'gasstation',
+        rule: '/station*/igs',
+        action: function() {
+          // robot.send('這是Gas Station的價格...');
+          // robot.render();
+          fetchGasStation(robot);
+        }
+      }],
+      ['Gas Now', {
+        name: 'gasnow',
+        rule: '/now*/igs',
+        action: function() {
+          fetchGasNow(robot);
+        }
+      }],
+      ['全部 (all)', {
+        name: 'allgas',
+        rule: '/all||全部/igs',
+        action: function() {
+          fetchGasStation(robot);
+          fetchGasNow(robot);
+        }
+      }]
+    );
   }
 });
