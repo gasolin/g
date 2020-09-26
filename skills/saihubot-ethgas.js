@@ -12,7 +12,7 @@ function fetchGasStation(robot) {
   fetch(GASSTATION_API)
   .then(response => response.json())
   .then(json => {
-    const result = `這是 Gas Station 提供的價格...\n H: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
+    const result = `這是 Gas Station 提供的價格...\n 高: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
     robot.send(result);
     robot.render();
   })
@@ -34,29 +34,32 @@ SaihuBot.prototype.responses.push({
   name: 'gasnow',
   rule: /gas*/igs,
   action: function(robot, msg) {
-    robot.confirm('想看哪個來源?',
-      ['Gas Station', {
-        name: 'gasstation',
+    robot.confirm('想看哪個來源?', [
+      {
+        title: 'Gas Station',
+        id: 'gasstation',
         rule: /station*/ig,
         action: function() {
           fetchGasStation(robot);
-        }
-      }],
-      ['Gas Now', {
-        name: 'gasnow',
+        },
+      },
+      {
+        title: 'Gas Now',
+        id: 'gasnow',
         rule: /now*/ig,
         action: function() {
           fetchGasNow(robot);
-        }
-      }],
-      ['全部 (all)', {
-        name: 'allgas',
+        },
+      },
+      {
+        title: '全部 (all)',
+        id: 'allgas',
         rule: /all|全部/ig,
         action: function() {
           fetchGasStation(robot);
           fetchGasNow(robot);
-        }
-      }]
-    );
+        },
+      }
+    ]);
   }
 });
