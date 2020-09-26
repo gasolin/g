@@ -45,14 +45,15 @@ SaihuBot.prototype.confirm = function(title, items) {
         console.log(`dialog skill matched! [${matchedMsg}]`);
         item.action(that, matchedMsg);
       }
-    })
+    });
     if (dialogMatched) {
-      this.adapter.resumeMsgParse()
+      this.adapter.resumeMsgParse();
     } else {
-      this.send('我看不懂啊，你可以直接點選上面的按鈕，或輸入別的試試？')
+      // eslint-disable-next-line max-len
+      this.send('我看不懂啊，你可以直接點選上面的按鈕，或輸入別的試試？');
     }
-    this.render()
-  })
+    this.render();
+  });
 };
 
 SaihuBot.prototype.dialogSelected = function(selected, items) {
