@@ -12,7 +12,7 @@ function fetchGasStation(robot) {
   fetch(GASSTATION_API)
   .then(response => response.json())
   .then(json => {
-    const result = `這是Gas Station的價格...\n H: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
+    const result = `這是 Gas Station 提供的價格...\n H: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
     robot.send(result);
     robot.render();
   })
@@ -22,7 +22,7 @@ function fetchGasNow(robot) {
   fetch(GASNOW_API)
   .then(response => response.json())
   .then(json => {
-    const result = `這是Gas Now的價格...\n 高: ${int(json.data.fast / 1000000000)} 中: ${int(json.data.standard / 1000000000)} 低: ${int(json.data.slow / 1000000000)}`
+    const result = `這是 Gas Now 提供的價格...\n 高: ${int(json.data.fast / 1000000000)} 中: ${int(json.data.standard / 1000000000)} 低: ${int(json.data.slow / 1000000000)}`
     robot.send(result);
     robot.render();
   })
@@ -37,23 +37,21 @@ SaihuBot.prototype.responses.push({
     robot.confirm('想看哪個來源?',
       ['Gas Station', {
         name: 'gasstation',
-        rule: '/station*/igs',
+        rule: /station*/ig,
         action: function() {
-          // robot.send('這是Gas Station的價格...');
-          // robot.render();
           fetchGasStation(robot);
         }
       }],
       ['Gas Now', {
         name: 'gasnow',
-        rule: '/now*/igs',
+        rule: /now*/ig,
         action: function() {
           fetchGasNow(robot);
         }
       }],
       ['全部 (all)', {
         name: 'allgas',
-        rule: '/all||全部/igs',
+        rule: /all|全部/ig,
         action: function() {
           fetchGasStation(robot);
           fetchGasNow(robot);
