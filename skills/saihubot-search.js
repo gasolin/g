@@ -184,3 +184,32 @@ SaihuBot.prototype.responses.push({
     openTab(url);
   },
 });
+
+// https://www.bitfinex.com/t/ETH:USD
+// https://www.bitfinex.com/t/UST:USD
+SaihuBot.prototype.responses.push({
+  name: 'bitfinex',
+  rule: /(^bitfinex |^bfx )(.*)/i,
+  action: function(robot, msg) {
+    let term = msg[2];
+    let pair = term === '' ? 'ETH:USD' : term.toUpperCase().replace('/', ':');
+    const url = `https://www.bitfinex.com/t/${pair}`;
+    const link = renderResponse('Search', msg[2], url, 'Bitfinex');
+    robot.adapter.sendHTML(link);
+    openTab(url);
+  },
+});
+
+// https://www.ace.io/webtrade/TWD_USDT
+SaihuBot.prototype.responses.push({
+  name: 'ace',
+  rule: /(^ace )(.*)/i,
+  action: function(robot, msg) {
+    let term = msg[2];
+    let pair = term === '' ? 'TWD_USDT' : term.toUpperCase().replace('/', '_');
+    const url = `https://www.ace.io/webtrade/${pair}`;
+    const link = renderResponse('Search', msg[2], url, 'ACE');
+    robot.adapter.sendHTML(link);
+    openTab(url);
+  },
+});

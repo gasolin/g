@@ -13,6 +13,7 @@
   <script src="skills/saihubot-search.js"></script>
   <script src="skills/saihubot-gasolin.js"></script>
   <script src="skills/saihubot-ethgas.js"></script>
+  <script src="skills/saihubot-currency.js"></script>
 </head>
 <body>
   <div class="chat-frame">
@@ -31,10 +32,10 @@
   </p>
 
   <script>
-  var message = document.createElement('span');
-  var line1 = document.createTextNode('小g: 有什麼需要服務的地方嗎？');
+  const message = document.createElement('span');
+  const line1 = document.createTextNode('小g: 有什麼需要服務的地方嗎？');
   message.appendChild(line1);
-  new SaihuBot({
+  const config = {
     adapter: basicAdapter,
     // brain: localforageBrain,
     welcomeMessage: message,
@@ -57,7 +58,8 @@
     ],
     bot: "小g",
     user: "我",
-  });
+  };
+  new SaihuBot(config);
 </script>
 </body>
 </html>
