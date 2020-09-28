@@ -33,7 +33,7 @@ function fetchUSDPrice(robot) {
 // confirm dialog addon
 SaihuBot.prototype.responses.push({
   name: 'price',
-  rule: /usd*|美金*|美元*/igs,
+  rule: /forex*|usd price*|美金*|美元*/igs,
   action: function(robot, msg) {
     robot.send('抓取中...');
     fetchUSDPrice(robot)

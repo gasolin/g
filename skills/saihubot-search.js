@@ -185,6 +185,13 @@ SaihuBot.prototype.responses.push({
   },
 });
 
+function getSymbols(input) {
+  if (input.length > 6) {
+    return input.split(/\/|:/, 2)
+  }
+  return [input.slice(0, 3), input.slice(3, 6)]
+}
+
 // https://www.bitfinex.com/t/ETH:USD
 // https://www.bitfinex.com/t/UST:USD
 SaihuBot.prototype.responses.push({
@@ -192,9 +199,9 @@ SaihuBot.prototype.responses.push({
   rule: /(^bitfinex |^bfx )(.*)/i,
   action: function(robot, msg) {
     let term = msg[2];
-    let pair = term === '' ? 'ETH:USD' : term.toUpperCase().replace('/', ':');
+    let pair = term === '' ? 'ETH:USD' : getSymbols(term).join(':').toUpperCase();
     const url = `https://www.bitfinex.com/t/${pair}`;
-    const link = renderResponse('Search', msg[2], url, 'Bitfinex');
+    const link = renderResponse('Search', pair, url, 'Bitfinex');
     robot.adapter.sendHTML(link);
     openTab(url);
   },
@@ -206,7 +213,7 @@ SaihuBot.prototype.responses.push({
   rule: /(^ace )(.*)/i,
   action: function(robot, msg) {
     let term = msg[2];
-    let pair = term === '' ? 'TWD_USDT' : term.toUpperCase().replace('/', '_');
+    let pair = term === '' ? 'TWD_USDT' : getSymbols(term).join('_').toUpperCase();
     const url = `https://www.ace.io/webtrade/${pair}`;
     const link = renderResponse('Search', msg[2], url, 'ACE');
     robot.adapter.sendHTML(link);
