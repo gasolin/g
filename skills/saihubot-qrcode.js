@@ -12,7 +12,7 @@ SaihuBot.prototype.responses.push({
       width: '256px',
       height: '256px',
       asyncAction: (rootElement) => {
-        const code = msg[1];
+        const code = encodeURIComponent(msg[1]);
         new QRCode(rootElement, {
           text: code,
           width: 256,

@@ -222,3 +222,29 @@ SaihuBot.prototype.responses.push({
     openTab(url);
   },
 });
+
+// https://ethcontract.watch/contracts/0x6B175474E89094C44Da98b954EedeAC495271d0F
+SaihuBot.prototype.responses.push({
+  name: 'ethcontract',
+  help: 'contract [address] - check contract on ethcontract',
+  rule: /(^contract )(.*)/i,
+  action: function(robot, msg) {
+    const url = 'https://ethcontract.watch/contracts/' + msg[2];
+    const link = renderResponse('Check', msg[2], url, 'ethcontract');
+    robot.adapter.sendHTML(link);
+    openTab(url);
+  },
+});
+
+//https://www.etherscan.io/address/0x6B175474E89094C44Da98b954EedeAC495271d0F
+SaihuBot.prototype.responses.push({
+  name: 'etherscan',
+  help: 'scan [address] - check contract address on etherscan',
+  rule: /(^scan )(.*)/i,
+  action: function(robot, msg) {
+    const url = 'https://www.etherscan.io/address/' + msg[2];
+    const link = renderResponse('Check', msg[2], url, 'etherscan');
+    robot.adapter.sendHTML(link);
+    openTab(url);
+  },
+});
