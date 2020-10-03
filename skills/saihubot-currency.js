@@ -38,10 +38,10 @@ function fetchUSDPrice(robot, rootElement) {
   })
 }
 
-// skills that use
-// confirm dialog addon
+// skills that use card addon
 SaihuBot.prototype.responses.push({
   name: 'price',
+  help: 'forex|usd price|美金|美元 - Fetch current USD price',
   rule: /forex*|usd price*|美金*|美元*/igs,
   action: function(robot, msg) {
     robot.card({
@@ -60,7 +60,6 @@ SaihuBot.prototype.responses.push({
           fetchUSDPrice(robot, rootElement),
           fetchUSDtPrice(robot, rootElement),
         ]).then(() => {
-          console.log('clean~')
           robot.cardIsReady(rootElement);
         })
       },

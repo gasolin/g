@@ -3,6 +3,7 @@
 SaihuBot.prototype.responses.push({
   name: 'home',
   rule: /首頁*|home*/i,
+  help: '首頁|Home - Open gasolin\'s Homepage',
   action: function(robot, msg) {
     let url = 'http://www.gasolin.idv.tw';
     let link = document.createElement('a');
@@ -17,6 +18,7 @@ SaihuBot.prototype.responses.push({
 
 SaihuBot.prototype.responses.push({
   name: 'resume',
+  help: 'gasolin|履歷|經歷|網站|學歷|resume - Open gasolin\'s Resume',
   rule: /gasolin*|履歷*|經歷*|網站*|學歷*|resume*/i,
   action: function(robot, msg) {
     let url = 'http://www.gasolin.idv.tw/resume';
@@ -32,6 +34,7 @@ SaihuBot.prototype.responses.push({
 
 SaihuBot.prototype.responses.push({
   name: 'project',
+  help: '貢獻|專案|project - Open gasolin\'s Projects',
   rule: /貢獻*|專案*|project*/i,
   action: function(robot, msg) {
     let url = 'http://www.gasolin.idv.tw/portfolio';
@@ -47,6 +50,7 @@ SaihuBot.prototype.responses.push({
 
 SaihuBot.prototype.responses.push({
   name: 'present',
+  help: '演講|present - Open gasolin\'s Presentations',
   rule: /演講*|present*/i,
   action: function(robot, msg) {
     let url = 'http://www.gasolin.idv.tw/present';
@@ -62,6 +66,7 @@ SaihuBot.prototype.responses.push({
 
 SaihuBot.prototype.responses.push({
   name: 'travel',
+  help: '去過|travel - Open gasolin\'s Travel Path',
   rule: /去過*|travel*/i,
   action: function(robot, msg) {
     let url = 'http://www.mytravelmap.tk/compare/gg112695256249584453237/1470712913452?locale=en';
@@ -71,7 +76,7 @@ SaihuBot.prototype.responses.push({
     let link = document.createElement('a');
     link.href = url;
     link.target = '_blank';
-    let linkText = document.createTextNode('這些是 gasolin 去過的國家');
+    let linkText = document.createTextNode('這些是 gasolin 去過的地區');
     link.appendChild(linkText);
     div.appendChild(img);
     div.appendChild(document.createElement('br'));

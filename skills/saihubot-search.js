@@ -196,6 +196,7 @@ function getSymbols(input) {
 // https://www.bitfinex.com/t/UST:USD
 SaihuBot.prototype.responses.push({
   name: 'bitfinex',
+  help: 'bitfinex|bfx [quote/base] - search [quote/base] pair with Bitfinex exchange',
   rule: /(^bitfinex |^bfx )(.*)/i,
   action: function(robot, msg) {
     let term = msg[2];
@@ -210,6 +211,7 @@ SaihuBot.prototype.responses.push({
 // https://www.ace.io/webtrade/TWD_USDT
 SaihuBot.prototype.responses.push({
   name: 'ace',
+  help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
   rule: /(^ace )(.*)/i,
   action: function(robot, msg) {
     let term = msg[2];

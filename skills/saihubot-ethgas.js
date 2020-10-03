@@ -32,6 +32,7 @@ function fetchGasNow(robot) {
 // confirm dialog addon
 SaihuBot.prototype.responses.push({
   name: 'gasnow',
+  help: 'gas - Show current ethereum Gas fee',
   rule: /gas*/igs,
   action: function(robot, msg) {
     robot.confirm('想看哪個來源?', [
