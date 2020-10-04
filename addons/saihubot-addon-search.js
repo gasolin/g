@@ -1,3 +1,10 @@
+/* globals SaihuBot */
+
+/**
+ * Open url in browser.
+ *
+ * @param {String} url
+ */
 function openTab(url) {
   window.open(url, '_blank');
 }
@@ -9,7 +16,6 @@ function openTab(url) {
  * @param {String} term search term
  * @param {String} url real search url
  * @param {String} engine search engine
- * @return {HTMLElement} response description with link
  */
 SaihuBot.prototype.search = function(action, term, url, engine) {
   const span = document.createElement('span');
@@ -24,4 +30,4 @@ SaihuBot.prototype.search = function(action, term, url, engine) {
   span.appendChild(line2);
   this.adapter.sendHTML(link);
   openTab(url);
-}
+};

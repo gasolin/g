@@ -68,10 +68,13 @@ SaihuBot.prototype.responses.push({
 
 function getSymbols(input) {
   if (input.length > 6) {
-    return input.split(/\/|:/, 2)
+    return input.split(/\/|:/, 2);
   }
-  return [input.slice(0, 3), input.slice(3, 6)]
+  return [input.slice(0, 3), input.slice(3, 6)];
 }
+
+const BFX_DEFAULT_PAIR = 'ETH:USD';
+const BFX_DEFAULT_BASE = 'USD';
 
 // https://www.bitfinex.com/t/ETH:USD
 // https://www.bitfinex.com/t/UST:USD
@@ -80,12 +83,19 @@ SaihuBot.prototype.responses.push({
   help: 'bitfinex|bfx [quote/base] - search [quote/base] pair with Bitfinex exchange',
   rule: /(^bitfinex |^bfx )(.*)/i,
   action: function(robot, msg) {
-    let term = msg[2];
-    let pair = term === '' ? 'ETH:USD' : getSymbols(term).join(':').toUpperCase();
+    let [quote, base] = msg[2] && getSymbols(msg[2]);
+    let pair = msg[2] === ''
+      ? BFX_DEFAULT_PAIR
+      : base
+        ? `${quote.toUpperCase()}:${base.toUpperCase()}`
+        : `${quote.toUpperCase()}:${BFX_DEFAULT_BASE}`;
     const url = `https://www.bitfinex.com/t/${pair}`;
     robot.search('Search', pair, url, 'Bitfinex');
   },
 });
+
+const ACE_DEFAULT_PAIR = 'TWD_USDT';
+const BFX_DEFAULT_QUOTE = 'TWD';
 
 // https://www.ace.io/webtrade/TWD_USDT
 SaihuBot.prototype.responses.push({
@@ -93,8 +103,12 @@ SaihuBot.prototype.responses.push({
   help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
   rule: /(^ace )(.*)/i,
   action: function(robot, msg) {
-    let term = msg[2];
-    let pair = term === '' ? 'TWD_USDT' : getSymbols(term).join('_').toUpperCase();
+    let [quote, base] = msg[2] && getSymbols(msg[2]);
+    let pair = msg[2] === ''
+      ? ACE_DEFAULT_PAIR
+      : base
+        ? `${base.toUpperCase()}_${quote.toUpperCase()}`
+        : `${BFX_DEFAULT_QUOTE}_${quote.toUpperCase()}`;
     const url = `https://www.ace.io/webtrade/${pair}`;
     robot.search('Search', pair, url, 'ACE');
   },
