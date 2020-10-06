@@ -114,6 +114,22 @@ SaihuBot.prototype.responses.push({
   },
 });
 
+const MAICOIN_DEFAULT_COIN = 'USDT';
+
+// USDT
+SaihuBot.prototype.responses.push({
+  name: 'maicoin',
+  help: 'maicoin [coin] - search [coin] with Maicoin',
+  rule: /(^maicoin )(.*)/i,
+  action: function(robot, msg) {
+    let coin = msg[2] === ''
+      ? MAICOIN_DEFAULT_COIN
+      : msg[2].toUpperCase();
+    const url = `https://www.maicoin.com/market/${coin}`;
+    robot.search('Search', coin, url, 'Maicoin');
+  },
+});
+
 // https://ethcontract.watch/contracts/0x6B175474E89094C44Da98b954EedeAC495271d0F
 SaihuBot.prototype.responses.push({
   name: 'ethcontract',
