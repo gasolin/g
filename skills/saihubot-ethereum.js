@@ -89,7 +89,7 @@ SaihuBot.prototype.responses.push({
       : base
         ? `${quote.toUpperCase()}:${base.toUpperCase()}`
         : `${quote.toUpperCase()}:${BFX_DEFAULT_BASE}`;
-    const url = `https://www.bitfinex.com/t/${pair}`;
+    const url = `https://www.bitfinex.com/t/${pair}?demo=true`;
     robot.search('Search', pair, url, 'Bitfinex');
   },
 });
