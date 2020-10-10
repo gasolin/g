@@ -1,6 +1,6 @@
 'use strict';
 // plugin to provide gasolin specific services
-SaihuBot.prototype.responses.push({
+const skill_home = {
   name: 'home',
   rule: /首頁*|home*/i,
   help: '首頁|Home - Open gasolin\'s Homepage',
@@ -14,9 +14,9 @@ SaihuBot.prototype.responses.push({
     robot.adapter.sendHTML(link);
     window.open(url, '_blank');
   }
-});
+};
 
-SaihuBot.prototype.responses.push({
+const skill_resume = {
   name: 'resume',
   help: 'gasolin|履歷|經歷|網站|學歷|resume - Open gasolin\'s Resume',
   rule: /gasolin*|履歷*|經歷*|網站*|學歷*|resume*/i,
@@ -30,9 +30,9 @@ SaihuBot.prototype.responses.push({
     robot.adapter.sendHTML(link);
     window.open(url, '_blank');
   }
-});
+};
 
-SaihuBot.prototype.responses.push({
+const skill_project = {
   name: 'project',
   help: '貢獻|專案|project - Open gasolin\'s Projects',
   rule: /貢獻*|專案*|project*/i,
@@ -46,9 +46,9 @@ SaihuBot.prototype.responses.push({
     robot.adapter.sendHTML(link);
     window.open(url, '_blank');
   }
-});
+};
 
-SaihuBot.prototype.responses.push({
+const skill_present = {
   name: 'present',
   help: '演講|present - Open gasolin\'s Presentations',
   rule: /演講*|present*/i,
@@ -62,9 +62,9 @@ SaihuBot.prototype.responses.push({
     robot.adapter.sendHTML(link);
     window.open(url, '_blank');
   }
-});
+};
 
-SaihuBot.prototype.responses.push({
+const skill_travel = {
   name: 'travel',
   help: '去過|travel - Open gasolin\'s Travel Path',
   rule: /去過*|travel*/i,
@@ -83,4 +83,13 @@ SaihuBot.prototype.responses.push({
     div.appendChild(link);
     robot.adapter.sendHTML(div);
   }
-});
+};
+
+const skills = [
+  skill_home,
+  skill_resume,
+  skill_project,
+  skill_present,
+  skill_travel,
+];
+export { skills };

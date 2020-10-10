@@ -3,7 +3,7 @@
 /* <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script> */
 
 // skills that use card addon
-SaihuBot.prototype.responses.push({
+const skill_qrcode = {
   name: 'qrcode',
   help: 'qrcode [text] - Generate QRCode with [text]',
   rule: /qrcode (.*)/i,
@@ -23,4 +23,7 @@ SaihuBot.prototype.responses.push({
       }
     })
   }
-})
+};
+
+const skills = [skill_qrcode];
+export { skills };

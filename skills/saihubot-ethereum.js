@@ -1,4 +1,3 @@
-/* globals SaihuBot */
 'use strict';
 
 const GASSTATION_API = 'https://ethgasstation.info/api/ethgasAPI.json';
@@ -30,7 +29,7 @@ function fetchGasNow(robot) {
 
 // skills that use
 // confirm dialog addon
-SaihuBot.prototype.responses.push({
+const skill_gasnow = {
   name: 'gasnow',
   help: 'gas - Show current ethereum Gas fee',
   rule: /gas*/igs,
@@ -63,8 +62,7 @@ SaihuBot.prototype.responses.push({
       }
     ]);
   }
-});
-
+};
 
 function getSymbols(input) {
   if (input.length > 6) {
@@ -78,7 +76,7 @@ const BFX_DEFAULT_BASE = 'USD';
 
 // https://www.bitfinex.com/t/ETH:USD
 // https://www.bitfinex.com/t/UST:USD
-SaihuBot.prototype.responses.push({
+const skill_search_bitfinex = {
   name: 'bitfinex',
   help: 'bitfinex|bfx [quote/base] - search [quote/base] pair with Bitfinex exchange',
   rule: /(^bitfinex |^bfx )(.*)/i,
@@ -92,13 +90,13 @@ SaihuBot.prototype.responses.push({
     const url = `https://www.bitfinex.com/t/${pair}?demo=true`;
     robot.search('Search', pair, url, 'Bitfinex');
   },
-});
+}
 
 const ACE_DEFAULT_PAIR = 'TWD_USDT';
 const BFX_DEFAULT_QUOTE = 'TWD';
 
 // https://www.ace.io/webtrade/TWD_USDT
-SaihuBot.prototype.responses.push({
+const skill_search_ace = {
   name: 'ace',
   help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
   rule: /(^ace )(.*)/i,
@@ -112,12 +110,11 @@ SaihuBot.prototype.responses.push({
     const url = `https://www.ace.io/webtrade/${pair}`;
     robot.search('Search', pair, url, 'ACE');
   },
-});
+};
 
 const MAICOIN_DEFAULT_COIN = 'USDT';
 
-// USDT
-SaihuBot.prototype.responses.push({
+const skill_search_maicoin = {
   name: 'maicoin',
   help: 'maicoin [coin] - search [coin] with Maicoin',
   rule: /(^maicoin )(.*)/i,
@@ -128,10 +125,25 @@ SaihuBot.prototype.responses.push({
     const url = `https://www.maicoin.com/market/${coin}`;
     robot.search('Search', coin, url, 'Maicoin');
   },
-});
+}
+
+const MAX_DEFAULT_COIN = 'usdttwd'
+// https://max.maicoin.com/trades/usdttwd
+const skill_search_max = {
+  name: 'max',
+  help: 'max [coin] - search [coin] with Max',
+  rule: /(^max )(.*)/i,
+  action: function(robot, msg) {
+    let coin = msg[2] === ''
+      ? MAX_DEFAULT_COIN
+      : msg[2].toLowerCase();
+    const url = `https://max.maicoin.com/trades/${coin}`;
+    robot.search('Search', coin, url, 'Max');
+  },
+};
 
 // https://ethcontract.watch/contracts/0x6B175474E89094C44Da98b954EedeAC495271d0F
-SaihuBot.prototype.responses.push({
+const skill_search_ethcontract = {
   name: 'ethcontract',
   help: 'contract [address] - check contract on ethcontract',
   rule: /(^contract )(.*)/i,
@@ -139,10 +151,10 @@ SaihuBot.prototype.responses.push({
     const url = 'https://ethcontract.watch/contracts/' + msg[2];
     robot.search('Check', msg[2], url, 'ethcontract');
   },
-});
+};
 
 //https://www.etherscan.io/address/0x6B175474E89094C44Da98b954EedeAC495271d0F
-SaihuBot.prototype.responses.push({
+const skill_search_etherscan = {
   name: 'etherscan',
   help: 'scan [address] - check contract address on etherscan',
   rule: /(^scan )(.*)/i,
@@ -150,4 +162,15 @@ SaihuBot.prototype.responses.push({
     const url = 'https://www.etherscan.io/address/' + msg[2];
     robot.search('Check', msg[2], url, 'etherscan');
   },
-});
+};
+
+const skills = [
+  skill_gasnow,
+  skill_search_bitfinex,
+  skill_search_ace,
+  skill_search_maicoin,
+  skill_search_max,
+  skill_search_ethcontract,
+  skill_search_etherscan,
+];
+export { skills };

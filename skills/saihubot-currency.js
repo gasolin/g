@@ -39,7 +39,7 @@ function fetchUSDPrice(robot, rootElement) {
 }
 
 // skills that use card addon
-SaihuBot.prototype.responses.push({
+const skill_price = {
   name: 'price',
   help: 'forex|usd price|美金|美元 - Fetch current USD price',
   rule: /forex*|usd price*|美金*|美元*/igs,
@@ -65,4 +65,7 @@ SaihuBot.prototype.responses.push({
       },
     })
   },
-});
+};
+
+const skills = [skill_price];
+export { skills };
