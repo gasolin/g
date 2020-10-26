@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 'use strict';
 
 // plugin that provide help skill
