@@ -39,7 +39,7 @@ function fetchUSDPrice(robot, rootElement) {
 }
 
 // skills that use card addon
-const skill_price = {
+export const skill_price = {
   name: 'price',
   help: 'forex|usd price|美金|美元 - Fetch current USD price',
   rule: /forex*|usd price*|美金*|美元*/igs,

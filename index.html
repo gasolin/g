@@ -6,11 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <title>聊天機器人小g</title>
   <link rel="stylesheet" href="samples/chat.css">
-  <script src="core/saihubot.js"></script>
-  <script src="adapters/saihubot-adapter-basic.js"></script>
-  <script src="addons/saihubot-addon-dialog.js"></script>
-  <script src="addons/saihubot-addon-card.js"></script>
-  <script src="addons/saihubot-addon-search.js"></script>
   <!-- require by qrcode skill -->
   <script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script>
 </head>
@@ -30,12 +25,25 @@
     >> <a href="https://github.com/gasolin/saihubot/">Download Saihubot</a>
   </p>
 
-  <script>
+  <script type="module">
+    import SaihuBot from './node_modules/saihubot/src/saihubot.js';
+    import htmlAdapter from './node_modules/saihubot-html-adapter/saihubot-html-adapter.js';
+    import {addons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-dialog.js';
+    import {addonCard} from './node_modules/saihubot-html-adapter/saihubot-html-addon-card.js';
+    import {addonSearch} from './node_modules/saihubot-html-adapter/saihubot-html-addon-search.js';
+    import {skillHelp} from './node_modules/saihubot-html-adapter/saihubot-html-skill-help.js';
+    import {skills as skillsDiagnos} from './node_modules/saihubot-skill-diagnostics/index.js';
+    import {skills as skillsSearch} from './node_modules/saihubot-skill-search/index.js';
+    import {skills as gasoSkills} from './src/saihubot-html-skill-gasolin.js';
+    import {skills as ethSkills} from './src/saihubot-skill-ethereum.js';
+    import {skills as curSkills} from './src/saihubot-html-skill-currency.js';
+    import {skills as qrSkills} from './src/saihubot-html-skill-qrcode.js';
+
   const message = document.createElement('span');
   const line1 = document.createTextNode('小g: 有什麼需要服務的地方嗎？');
   message.appendChild(line1);
   const config = {
-    adapter: basicAdapter,
+    adapter: htmlAdapter,
     // brain: localforageBrain,
     welcomeMessage: message,
     notFoundMessages: [
@@ -57,15 +65,10 @@
     ],
     bot: "小g",
     user: "我",
-    skillsFile: [
-      'skills/saihubot-help.js',
-      'skills/saihubot-diagnostics.js',
-      'skills/saihubot-search.js',
-      'skills/saihubot-gasolin.js',
-      'skills/saihubot-ethereum.js',
-      'skills/saihubot-currency.js',
-      'skills/saihubot-qrcode.js',
-    ],
+    addons: [...addons, addonCard, addonSearch],
+    skills: [skillHelp, ...skillsDiagnos, ...skillsSearch, ...gasoSkills,
+      ...ethSkills, ...curSkills, ...qrSkills],
+    debug: false,
   };
   new SaihuBot(config);
 </script>

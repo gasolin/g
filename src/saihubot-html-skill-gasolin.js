@@ -1,6 +1,6 @@
 'use strict';
 // plugin to provide gasolin specific services
-const skill_home = {
+export const skillHome = {
   name: 'home',
   rule: /首頁*|home*/i,
   help: '首頁|Home - Open gasolin\'s Homepage',
@@ -16,7 +16,7 @@ const skill_home = {
   }
 };
 
-const skill_resume = {
+export const skillResume = {
   name: 'resume',
   help: 'gasolin|履歷|經歷|網站|學歷|resume - Open gasolin\'s Resume',
   rule: /gasolin*|履歷*|經歷*|網站*|學歷*|resume*/i,
@@ -32,7 +32,7 @@ const skill_resume = {
   }
 };
 
-const skill_project = {
+export const skillProject = {
   name: 'project',
   help: '貢獻|專案|project - Open gasolin\'s Projects',
   rule: /貢獻*|專案*|project*/i,
@@ -48,7 +48,7 @@ const skill_project = {
   }
 };
 
-const skill_present = {
+export const skillPresent = {
   name: 'present',
   help: '演講|present - Open gasolin\'s Presentations',
   rule: /演講*|present*/i,
@@ -64,7 +64,7 @@ const skill_present = {
   }
 };
 
-const skill_travel = {
+export const skillTravel = {
   name: 'travel',
   help: '去過|travel - Open gasolin\'s Travel Path',
   rule: /去過*|travel*/i,
@@ -86,10 +86,10 @@ const skill_travel = {
 };
 
 const skills = [
-  skill_home,
-  skill_resume,
-  skill_project,
-  skill_present,
-  skill_travel,
+  skillHome,
+  skillResume,
+  skillProject,
+  skillPresent,
+  skillTravel,
 ];
 export { skills };

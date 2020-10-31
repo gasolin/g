@@ -7,7 +7,7 @@ function int(num) {
   return parseInt(num, 10);
 }
 
-function fetchGasStation(robot) {
+export function fetchGasStation(robot) {
   fetch(GASSTATION_API)
   .then(response => response.json())
   .then(json => {
@@ -17,7 +17,7 @@ function fetchGasStation(robot) {
   })
 }
 
-function fetchGasNow(robot) {
+export function fetchGasNow(robot) {
   fetch(GASNOW_API)
   .then(response => response.json())
   .then(json => {
@@ -29,12 +29,12 @@ function fetchGasNow(robot) {
 
 // skills that use
 // confirm dialog addon
-const skill_gasnow = {
+export const skill_gasnow = {
   name: 'gasnow',
   help: 'gas - Show current ethereum Gas fee',
   rule: /gas*/igs,
   action: function(robot, msg) {
-    robot.confirm('想看哪個來源?', [
+    robot.addons.confirm('想看哪個來源?', [
       {
         title: 'Gas Station',
         id: 'gasstation',
@@ -88,7 +88,7 @@ const skill_search_bitfinex = {
         ? `${quote.toUpperCase()}:${base.toUpperCase()}`
         : `${quote.toUpperCase()}:${BFX_DEFAULT_BASE}`;
     const url = `https://www.bitfinex.com/t/${pair}?demo=true`;
-    robot.search('Search', pair, url, 'Bitfinex');
+    robot.addons.search('Search', pair, url, 'Bitfinex');
   },
 }
 
@@ -96,7 +96,7 @@ const ACE_DEFAULT_PAIR = 'TWD_USDT';
 const BFX_DEFAULT_QUOTE = 'TWD';
 
 // https://www.ace.io/webtrade/TWD_USDT
-const skill_search_ace = {
+export const skill_search_ace = {
   name: 'ace',
   help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
   rule: /(^ace )(.*)/i,
@@ -108,13 +108,13 @@ const skill_search_ace = {
         ? `${base.toUpperCase()}_${quote.toUpperCase()}`
         : `${BFX_DEFAULT_QUOTE}_${quote.toUpperCase()}`;
     const url = `https://www.ace.io/webtrade/${pair}`;
-    robot.search('Search', pair, url, 'ACE');
+    robot.addons.search('Search', pair, url, 'ACE');
   },
 };
 
 const MAICOIN_DEFAULT_COIN = 'USDT';
 
-const skill_search_maicoin = {
+export const skill_search_maicoin = {
   name: 'maicoin',
   help: 'maicoin [coin] - search [coin] with Maicoin',
   rule: /(^maicoin )(.*)/i,
@@ -123,13 +123,13 @@ const skill_search_maicoin = {
       ? MAICOIN_DEFAULT_COIN
       : msg[2].toUpperCase();
     const url = `https://www.maicoin.com/market/${coin}`;
-    robot.search('Search', coin, url, 'Maicoin');
+    robot.addons.search('Search', coin, url, 'Maicoin');
   },
 }
 
 const MAX_DEFAULT_COIN = 'usdttwd'
 // https://max.maicoin.com/trades/usdttwd
-const skill_search_max = {
+export const skill_search_max = {
   name: 'max',
   help: 'max [coin] - search [coin] with Max',
   rule: /(^max )(.*)/i,
@@ -138,29 +138,29 @@ const skill_search_max = {
       ? MAX_DEFAULT_COIN
       : msg[2].toLowerCase();
     const url = `https://max.maicoin.com/trades/${coin}`;
-    robot.search('Search', coin, url, 'Max');
+    robot.addons.search('Search', coin, url, 'Max');
   },
 };
 
 // https://ethcontract.watch/contracts/0x6B175474E89094C44Da98b954EedeAC495271d0F
-const skill_search_ethcontract = {
+export const skill_search_ethcontract = {
   name: 'ethcontract',
   help: 'contract [address] - check contract on ethcontract',
   rule: /(^contract )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://ethcontract.watch/contracts/' + msg[2];
-    robot.search('Check', msg[2], url, 'ethcontract');
+    robot.addons.search('Check', msg[2], url, 'ethcontract');
   },
 };
 
 //https://www.etherscan.io/address/0x6B175474E89094C44Da98b954EedeAC495271d0F
-const skill_search_etherscan = {
+export const skill_search_etherscan = {
   name: 'etherscan',
   help: 'scan [address] - check contract address on etherscan',
   rule: /(^scan )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://www.etherscan.io/address/' + msg[2];
-    robot.search('Check', msg[2], url, 'etherscan');
+    robot.addons.search('Check', msg[2], url, 'etherscan');
   },
 };
 

@@ -1,0 +1,26 @@
+{
+  "name": "g",
+  "version": "1.0.0",
+  "description": "gasolin's bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gasolin/g.git"
+  },
+  "author": "gasolin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gasolin/g/issues"
+  },
+  "homepage": "https://github.com/gasolin/g#readme",
+  "dependencies": {
+    "saihubot": "^0.23.0",
+    "saihubot-html-adapter": "^0.23.0",
+    "saihubot-skill-diagnostics": "^0.23.0",
+    "saihubot-skill-search": "^0.23.0"
+  }
+}
