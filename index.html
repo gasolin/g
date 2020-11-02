@@ -30,7 +30,7 @@
     import htmlAdapter from './node_modules/saihubot-html-adapter/saihubot-html-adapter.js';
     import {addons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-dialog.js';
     import {addonCard} from './node_modules/saihubot-html-adapter/saihubot-html-addon-card.js';
-    import {addonSearch} from './node_modules/saihubot-html-adapter/saihubot-html-addon-search.js';
+    import {addons as searchAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-search.js';
     import {skillHelp} from './node_modules/saihubot-html-adapter/saihubot-html-skill-help.js';
     import {skills as skillsDiagnos} from './node_modules/saihubot-skill-diagnostics/index.js';
     import {skills as skillsSearch} from './node_modules/saihubot-skill-search/index.js';
@@ -38,6 +38,7 @@
     import {skills as ethSkills} from './src/saihubot-skill-ethereum.js';
     import {skills as curSkills} from './src/saihubot-html-skill-currency.js';
     import {skills as qrSkills} from './src/saihubot-html-skill-qrcode.js';
+    import {skills as workSkills} from './src/saihubot-skill-work.js';
 
   const message = document.createElement('span');
   const line1 = document.createTextNode('小g: 有什麼需要服務的地方嗎？');
@@ -65,10 +66,10 @@
     ],
     bot: "小g",
     user: "我",
-    addons: [...addons, addonCard, addonSearch],
+    addons: [...addons, addonCard, ...searchAddons],
     skills: [skillHelp, ...skillsDiagnos, ...skillsSearch, ...gasoSkills,
-      ...ethSkills, ...curSkills, ...qrSkills],
-    debug: false,
+      ...ethSkills, ...curSkills, ...qrSkills, ...workSkills],
+    debug: true,
   };
   new SaihuBot(config);
 </script>

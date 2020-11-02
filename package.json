@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/gasolin/g#readme",
   "dependencies": {
-    "saihubot": "^0.23.0",
-    "saihubot-html-adapter": "^0.23.0",
-    "saihubot-skill-diagnostics": "^0.23.0",
-    "saihubot-skill-search": "^0.23.0"
+    "saihubot": "^0.26.1",
+    "saihubot-html-adapter": "^0.26.0",
+    "saihubot-skill-diagnostics": "^0.26.0",
+    "saihubot-skill-search": "^0.26.0"
   }
 }
