@@ -4,7 +4,7 @@ export const skillWork = {
   name: 'work',
   help: 'work related links',
   requirements: [],
-  rule: /WORK/i,
+  rule: /^WORK/i,
   action: function(robot, msg) {
     robot.addons.confirm('Choose Work', [
       {
@@ -45,7 +45,7 @@ export const skillToday = {
   name: 'today',
   help: 'today - Show today selections',
   requirements: [],
-  rule: /TODAY/i,
+  rule: /^TODAY/i,
   action: function(robot, msg) {
     robot.addons.confirm('What\'s up Today', [
       {
@@ -59,12 +59,6 @@ export const skillToday = {
         id: 'history',
         rule: /HISTORY/i,
         action: () => robot.ask('wolf today in history'),
-      },
-      {
-        title: '圖書館',
-        id: 'lib',
-        rule: /LIBRARY/i,
-        action: () => robot.addons.openLink('http://webcat.tpml.edu.tw/webpac/webpacIndex.jsp'),
       },
     ]);
   },

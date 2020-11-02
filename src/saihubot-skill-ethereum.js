@@ -8,7 +8,7 @@ function int(num) {
 }
 
 export function fetchGasStation(robot) {
-  fetch(GASSTATION_API)
+  robot.addons.fetch(GASSTATION_API)
   .then(response => response.json())
   .then(json => {
     const result = `這是 Gas Station 提供的價格...\n 高: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
@@ -18,7 +18,7 @@ export function fetchGasStation(robot) {
 }
 
 export function fetchGasNow(robot) {
-  fetch(GASNOW_API)
+  robot.addons.fetch(GASNOW_API)
   .then(response => response.json())
   .then(json => {
     const result = `這是 Gas Now 提供的價格...\n 高: ${int(json.data.fast / 1000000000)} 中: ${int(json.data.standard / 1000000000)} 低: ${int(json.data.slow / 1000000000)}`
@@ -29,10 +29,13 @@ export function fetchGasNow(robot) {
 
 // skills that use
 // confirm dialog addon
-export const skill_gasnow = {
+export const skillGasnow = {
   name: 'gasnow',
   help: 'gas - Show current ethereum Gas fee',
-  rule: /gas*/igs,
+  requirements: {
+    addons: ['fetch'],
+  },
+	rule: /^gas/igs,
   action: function(robot, msg) {
     robot.addons.confirm('想看哪個來源?', [
       {
@@ -76,7 +79,7 @@ const BFX_DEFAULT_BASE = 'USD';
 
 // https://www.bitfinex.com/t/ETH:USD
 // https://www.bitfinex.com/t/UST:USD
-const skill_search_bitfinex = {
+const skillSearchBitfinex = {
   name: 'bitfinex',
   help: 'bitfinex|bfx [quote/base] - search [quote/base] pair with Bitfinex exchange',
   rule: /(^bitfinex |^bfx )(.*)/i,
@@ -96,7 +99,7 @@ const ACE_DEFAULT_PAIR = 'TWD_USDT';
 const BFX_DEFAULT_QUOTE = 'TWD';
 
 // https://www.ace.io/webtrade/TWD_USDT
-export const skill_search_ace = {
+export const skillSearchAce = {
   name: 'ace',
   help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
   rule: /(^ace )(.*)/i,
@@ -114,7 +117,7 @@ export const skill_search_ace = {
 
 const MAICOIN_DEFAULT_COIN = 'USDT';
 
-export const skill_search_maicoin = {
+export const skillSearchMaicoin = {
   name: 'maicoin',
   help: 'maicoin [coin] - search [coin] with Maicoin',
   rule: /(^maicoin )(.*)/i,
@@ -129,7 +132,7 @@ export const skill_search_maicoin = {
 
 const MAX_DEFAULT_COIN = 'usdttwd'
 // https://max.maicoin.com/trades/usdttwd
-export const skill_search_max = {
+export const skillSearchMax = {
   name: 'max',
   help: 'max [coin] - search [coin] with Max',
   rule: /(^max )(.*)/i,
@@ -143,7 +146,7 @@ export const skill_search_max = {
 };
 
 // https://ethcontract.watch/contracts/0x6B175474E89094C44Da98b954EedeAC495271d0F
-export const skill_search_ethcontract = {
+export const skillSearchEthcontract = {
   name: 'ethcontract',
   help: 'contract [address] - check contract on ethcontract',
   rule: /(^contract )(.*)/i,
@@ -154,7 +157,7 @@ export const skill_search_ethcontract = {
 };
 
 //https://www.etherscan.io/address/0x6B175474E89094C44Da98b954EedeAC495271d0F
-export const skill_search_etherscan = {
+export const skillSearchEtherscan = {
   name: 'etherscan',
   help: 'scan [address] - check contract address on etherscan',
   rule: /(^scan )(.*)/i,
@@ -165,12 +168,12 @@ export const skill_search_etherscan = {
 };
 
 const skills = [
-  skill_gasnow,
-  skill_search_bitfinex,
-  skill_search_ace,
-  skill_search_maicoin,
-  skill_search_max,
-  skill_search_ethcontract,
-  skill_search_etherscan,
+  skillGasnow,
+  skillSearchBitfinex,
+  skillSearchAce,
+  skillSearchMaicoin,
+  skillSearchMax,
+  skillSearchEthcontract,
+  skillSearchEtherscan,
 ];
 export { skills };
