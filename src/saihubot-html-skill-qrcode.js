@@ -8,7 +8,7 @@ export const skill_qrcode = {
   help: 'qrcode [text] - Generate QRCode with [text]',
   rule: /qrcode (.*)/i,
   action: function(robot, msg) {
-    robot.card({
+    robot.addons.card({
       width: '256px',
       height: '256px',
       asyncAction: (rootElement) => {

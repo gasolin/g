@@ -11,7 +11,7 @@ export const skillHome = {
     link.target = '_blank';
     let linkText = document.createTextNode('歡迎前往 gasolin 的首頁');
     link.appendChild(linkText);
-    robot.adapter.sendHTML(link);
+    robot.adapter.unsafe_sendComponent(link);
     window.open(url, '_blank');
   }
 };
@@ -27,7 +27,7 @@ export const skillResume = {
     link.target = '_blank';
     let linkText = document.createTextNode('我主人 gasolin 的履歷在這，人才阿！');
     link.appendChild(linkText);
-    robot.adapter.sendHTML(link);
+    robot.adapter.unsafe_sendComponent(link);
     window.open(url, '_blank');
   }
 };
@@ -43,7 +43,7 @@ export const skillProject = {
     link.target = '_blank';
     let linkText = document.createTextNode('gasolin 貢獻過的專案大都在這了');
     link.appendChild(linkText);
-    robot.adapter.sendHTML(link);
+    robot.adapter.unsafe_sendComponent(link);
     window.open(url, '_blank');
   }
 };
@@ -59,7 +59,7 @@ export const skillPresent = {
     link.target = '_blank';
     let linkText = document.createTextNode('gasolin 過去的演講列表');
     link.appendChild(linkText);
-    robot.adapter.sendHTML(link);
+    robot.adapter.unsafe_sendComponent(link);
     window.open(url, '_blank');
   }
 };
@@ -81,7 +81,7 @@ export const skillTravel = {
     div.appendChild(img);
     div.appendChild(document.createElement('br'));
     div.appendChild(link);
-    robot.adapter.sendHTML(div);
+    robot.adapter.unsafe_sendComponent(div);
   }
 };
 
