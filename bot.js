@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
   new SaihuBot({
     adapter: htmlAdapter,
     // brain: localforageBrain,
-    welcomeMessage: '有什麼需要服務的地方嗎？',
+    welcomeMessage: '有什麼需要服務的地方嗎？或輸入`help`看看我能做哪些事',
     notFoundMessages: [
       '輸入 `help` 可以看到所有支援的技能(skill)喔',
       '我只好回你一個404了',

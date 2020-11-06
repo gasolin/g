@@ -2,7 +2,7 @@
 // plugin to provide gasolin specific services
 export const skillHome = {
   name: 'home',
-  rule: /首頁*|home*/i,
+  rule: /^首頁*|^home*/i,
   help: '首頁|Home - Open gasolin\'s Homepage',
   action: function(robot, msg) {
     let url = 'http://www.gasolin.idv.tw';
