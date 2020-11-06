@@ -36,10 +36,8 @@ const renderMessage = (message, charactor, role = 'bot') => {
     ? 'px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600'
     : 'px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white';
   if (typeof message === 'string') {
-    console.log('msg', message);
     messageWraper.textContent = message;
   } else if (message instanceof HTMLElement) {
-    console.log('append child')
     messageWraper.appendChild(message);
   }
   const messageDivL3 = document.createElement('div');
@@ -64,7 +62,7 @@ const renderMessage = (message, charactor, role = 'bot') => {
   messageDivL1.appendChild(span);
   botContainer.appendChild(messageDivL1);
   return botContainer;
-}
+};
 
 document.addEventListener('DOMContentLoaded', function() {
   new SaihuBot({
@@ -82,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
       '你想知道什麼？',
       '至少你是認真在跟我聊天, 不是在玩皮卡丘'
     ],
-    botAlias: "🤖",
-    userAlias: "😎",
+    botAlias: '🤖',
+    userAlias: '😎',
     renderMessage,
     renderComponent: renderMessage,
     addons: [...cardAddons, ...dialogAddons, ...searchAddons],
