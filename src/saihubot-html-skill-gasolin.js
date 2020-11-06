@@ -67,7 +67,7 @@ export const skillPresent = {
 export const skillTravel = {
   name: 'travel',
   help: '去過|travel - Open gasolin\'s Travel Path',
-  rule: /去過*|travel*/i,
+  rule: /^去過*|travel*/i,
   action: function(robot, msg) {
     let url = 'http://www.mytravelmap.tk/compare/gg112695256249584453237/1470712913452?locale=en';
     let div = document.createElement('div');

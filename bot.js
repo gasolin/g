@@ -5,12 +5,12 @@ import {addons as dialogAddons} from './node_modules/saihubot-html-adapter/saihu
 import {addons as cardAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-card.js';
 import {addons as searchAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-search.js';
 import {skillHelp} from './node_modules/saihubot-html-adapter/saihubot-html-skill-help.js';
+import {skills as qrSkills} from './node_modules/saihubot-html-adapter/saihubot-html-skill-qrcode.js';
 import {skills as diagnosSkills} from './node_modules/saihubot-skill-diagnostics/index.js';
 import {skills as searchSkills} from './node_modules/saihubot-skill-search/index.js';
 import {skills as gasoSkills} from './src/saihubot-html-skill-gasolin.js';
 import {skills as ethSkills} from './src/saihubot-skill-ethereum.js';
 import {skills as curSkills} from './src/saihubot-html-skill-currency.js';
-import {skills as qrSkills} from './src/saihubot-html-skill-qrcode.js';
 import {skills as workSkills} from './src/saihubot-skill-work.js';
 
 // <div class="chat-message">
