@@ -19,7 +19,7 @@
   "homepage": "https://github.com/gasolin/g#readme",
   "dependencies": {
     "saihubot": "^0.28.0",
-    "saihubot-html-adapter": "^0.28.0",
+    "saihubot-html-adapter": "^0.28.3",
     "saihubot-skill-diagnostics": "^0.28.0",
     "saihubot-skill-search": "^0.28.0"
   }
