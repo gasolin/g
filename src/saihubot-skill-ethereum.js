@@ -33,9 +33,9 @@ export const skillGasnow = {
   name: 'gasnow',
   help: 'gas - Show current ethereum Gas fee',
   requirements: {
-    addons: ['fetch'],
+    addons: ['fetch', 'confirm'],
   },
-	rule: /^gas/igs,
+	rule: /^gas/i,
   action: function(robot, msg) {
     robot.addons.confirm('想看哪個來源?', [
       {
@@ -83,7 +83,10 @@ const skillSearchBitfinex = {
   name: 'bitfinex',
   help: 'bitfinex|bfx [quote/base] - search [quote/base] pair with Bitfinex exchange',
   rule: /(^bitfinex |^bfx )(.*)/i,
-  action: function(robot, msg) {
+  requirements: {
+    addons: ['search'],
+	},
+	action: function(robot, msg) {
     let [quote, base] = msg[2] && getSymbols(msg[2]);
     let pair = msg[2] === ''
       ? BFX_DEFAULT_PAIR
@@ -102,6 +105,9 @@ const BFX_DEFAULT_QUOTE = 'TWD';
 export const skillSearchAce = {
   name: 'ace',
   help: 'ace [quote/base] - search [quote/base] pair with ACE exchange',
+  requirements: {
+    addons: ['search'],
+  },
   rule: /(^ace )(.*)/i,
   action: function(robot, msg) {
     let [quote, base] = msg[2] && getSymbols(msg[2]);
@@ -120,6 +126,9 @@ const MAICOIN_DEFAULT_COIN = 'USDT';
 export const skillSearchMaicoin = {
   name: 'maicoin',
   help: 'maicoin [coin] - search [coin] with Maicoin',
+  requirements: {
+    addons: ['search'],
+  },
   rule: /(^maicoin )(.*)/i,
   action: function(robot, msg) {
     let coin = msg[2] === ''
@@ -135,6 +144,9 @@ const MAX_DEFAULT_COIN = 'usdttwd'
 export const skillSearchMax = {
   name: 'max',
   help: 'max [coin] - search [coin] with Max',
+  requirements: {
+    addons: ['search'],
+  },
   rule: /(^max )(.*)/i,
   action: function(robot, msg) {
     let coin = msg[2] === ''
@@ -149,6 +161,9 @@ export const skillSearchMax = {
 export const skillSearchEthcontract = {
   name: 'ethcontract',
   help: 'contract [address] - check contract on ethcontract',
+  requirements: {
+    addons: ['search'],
+  },
   rule: /(^contract )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://ethcontract.watch/contracts/' + msg[2];
@@ -160,6 +175,9 @@ export const skillSearchEthcontract = {
 export const skillSearchEtherscan = {
   name: 'etherscan',
   help: 'scan [address] - check contract address on etherscan',
+  requirements: {
+    addons: ['search'],
+  },
   rule: /(^scan )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://www.etherscan.io/address/' + msg[2];
@@ -176,4 +194,4 @@ const skills = [
   skillSearchEthcontract,
   skillSearchEtherscan,
 ];
-export { skills };
+export {skills};

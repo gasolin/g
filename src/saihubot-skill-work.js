@@ -3,7 +3,9 @@
 export const skillWork = {
   name: 'work',
   help: 'work related links',
-  requirements: [],
+  requirements: {
+		addons: ['confirm', 'openLink']
+	},
   rule: /^WORK/i,
   action: function(robot, msg) {
     robot.addons.confirm('Choose Work', [
@@ -44,7 +46,9 @@ export const skillWork = {
 export const skillToday = {
   name: 'today',
   help: 'today - Show today selections',
-  requirements: [],
+  requirements: {
+		addons: ['confirm', 'search']
+	},
   rule: /^TODAY/i,
   action: function(robot, msg) {
     robot.addons.confirm('What\'s up Today', [
