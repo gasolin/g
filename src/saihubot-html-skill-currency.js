@@ -43,6 +43,9 @@ export const skill_price = {
   name: 'price',
   help: 'forex|usd price|美金|美元 - Fetch current USD price',
   rule: /^forex*|^usd price*|^美金*|^美元*/igs,
+  requirements: {
+    addonns: 'card',
+  },
   action: function(robot, msg) {
     robot.card({
       renderLoading: (rootElement) => {
