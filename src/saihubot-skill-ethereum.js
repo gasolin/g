@@ -164,7 +164,7 @@ export const skillSearchEthcontract = {
   requirements: {
     addons: ['search'],
   },
-  rule: /(^contract )(.*)/i,
+  rule: /(^contract |^ethcontract )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://ethcontract.watch/contracts/' + msg[2];
     robot.addons.search('Check', msg[2], url, 'ethcontract');
@@ -178,7 +178,7 @@ export const skillSearchEtherscan = {
   requirements: {
     addons: ['search'],
   },
-  rule: /(^scan )(.*)/i,
+  rule: /(^scan |^ethscan )(.*)/i,
   action: function(robot, msg) {
     const url = 'https://www.etherscan.io/address/' + msg[2];
     robot.addons.search('Check', msg[2], url, 'etherscan');
