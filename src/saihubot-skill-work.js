@@ -65,16 +65,10 @@ export const skillToday = {
         action: () => robot.ask('g weather today'),
       },
       {
-        title: 'Today in History',
-        id: 'history',
-        rule: /HISTORY/i,
-        action: () => robot.ask('wolf today in history'),
-      },
-      {
-        title: '圖書館',
-        id: 'library',
-        rule: /^LIBRARY/i,
-        action: () => robot.addons.openLink('http://webcat.tpml.edu.tw/webpac/webpacIndex.jsp'),
+        title: 'Pocket',
+        id: 'pocket',
+        rule: /POCKET/i,
+        action: () => robot.addons.openLink('https://app.getpocket.com/'),
       },
       {
         title: '電影',
@@ -87,6 +81,12 @@ export const skillToday = {
         id: 'book',
         rule: /^BOOK/i,
         action: () => robot.addons.openLink('https://share.readmoo.com/mooer/lifaicqb9/bookshelf/gasolin/total'),
+      },
+      {
+        title: 'Feedly',
+        id: 'feedly',
+        rule: /^FEEDLY/i,
+        action: () => robot.addons.openLink('https://feedly.com/i/my'),
       }
     ]);
   },
