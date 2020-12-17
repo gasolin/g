@@ -45,6 +45,12 @@ export const skillWork = {
         rule: /RECRUITEE/i,
         action: () => robot.addons.openLink('https://app.recruitee.com/#/offers/mobile-app-developer-remote/pipeline'),
       },
+      {
+        title: 'Window View',
+        id: 'window',
+        rule: /WINDOW/i,
+        action: () => robot.addons.openLink('http://window-swap.com/window'),
+      },
     ]);
   },
 }
