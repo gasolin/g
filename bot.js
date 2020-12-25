@@ -4,6 +4,7 @@ import htmlAdapter from './node_modules/saihubot-html-adapter/saihubot-html-adap
 import {addons as dialogAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-dialog.js';
 import {addons as cardAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-card.js';
 import {addons as searchAddons} from './node_modules/saihubot-html-adapter/saihubot-html-addon-search.js';
+import {addonFetchGas} from './node_modules/staker/src/saihubot-addon-ethgas.js';
 import {skillHelp} from './node_modules/saihubot-html-adapter/saihubot-html-skill-help.js';
 import {skills as qrSkills} from './node_modules/saihubot-html-adapter/saihubot-html-skill-qrcode.js';
 import {skills as diagnosSkills} from './node_modules/saihubot-skill-diagnostics/index.js';
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
     userAlias: '😎',
     renderMessage,
     renderComponent: renderMessage,
-    addons: [...cardAddons, ...dialogAddons, ...searchAddons],
+    addons: [...cardAddons, ...dialogAddons, ...searchAddons, addonFetchGas],
     skills: [skillHelp, ...diagnosSkills, ...searchSkills, ...gasoSkills,
     ...ethSkills, ...curSkills, ...qrSkills, ...workSkills],
     debug: true,

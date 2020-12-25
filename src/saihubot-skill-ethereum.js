@@ -1,30 +1,24 @@
 'use strict';
 
-const GASSTATION_API = 'https://ethgasstation.info/api/ethgasAPI.json';
-const GASNOW_API = 'https://www.gasnow.org/api/v3/gas/price?utm_source=:gaso';
 
-function int(num) {
-  return parseInt(num, 10);
-}
+import {GAS_ESTIMATOR} from '../node_modules/staker/src/saihubot-addon-ethgas.js';
 
 export function fetchGasStation(robot) {
-  robot.addons.fetch(GASSTATION_API)
-  .then(response => response.json())
-  .then(json => {
-    const result = `這是 Gas Station 提供的價格...\n 高: ${int(json.fast / 10)} 中: ${int(json.average / 10)} 低: ${int(json.safeLow / 10)}`
-    robot.send(result);
-    robot.render();
-  })
+  robot.addons.fetchGas(GAS_ESTIMATOR.GASSTATION,
+    data => {
+      const result = `這是 ${data.source} 提供的價格...\n 高: ${data.H} 中: ${data.M} 低: ${data.L}`
+      robot.send(result);
+      robot.render();
+    });
 }
 
 export function fetchGasNow(robot) {
-  robot.addons.fetch(GASNOW_API)
-  .then(response => response.json())
-  .then(json => {
-    const result = `這是 Gas Now 提供的價格...\n 高: ${int(json.data.fast / 1000000000)} 中: ${int(json.data.standard / 1000000000)} 低: ${int(json.data.slow / 1000000000)}`
-    robot.send(result);
-    robot.render();
-  })
+  robot.addons.fetchGas(GAS_ESTIMATOR.GASNOW,
+    data => {
+      const result = `這是 ${data.source} 提供的價格...\n 高: ${data.H} 中: ${data.M} 低: ${data.L}`
+      robot.send(result);
+      robot.render();
+    });
 }
 
 // skills that use

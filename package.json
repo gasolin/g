@@ -1,6 +1,6 @@
 {
   "name": "g",
-  "version": "0.30.0",
+  "version": "0.31.0",
   "description": "gasolin's bot",
   "main": "index.js",
   "scripts": {
@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/gasolin/g#readme",
   "dependencies": {
-    "saihubot": "^0.34.0",
-    "saihubot-html-adapter": "^0.34.0",
-    "saihubot-skill-diagnostics": "^0.34.0",
-    "saihubot-skill-search": "^0.34.7"
+    "saihubot": "^0.36.0",
+    "saihubot-html-adapter": "^0.36.0",
+    "saihubot-skill-diagnostics": "^0.36.0",
+    "saihubot-skill-search": "^0.36.0",
+    "staker": "^0.21.4"
   }
 }
